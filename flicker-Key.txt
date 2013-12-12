@@ -1,0 +1,8 @@
+Done! Here's the API key and secret for your new app:
+
+	We won't forget them (Lan Nansahom)
+Key:
+ead37fa7c04a7227c3d5c88f46b05d97
+
+Secret:
+72a71f353a9b0d06

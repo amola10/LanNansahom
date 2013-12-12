@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='BackEnd'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name="com.google.gwt.resources.Resources" />
+   <!-- Other module inherits                                      -->
+  <inherits name="eg.net.gxt.GXTBase" />
+  <inherits name='com.extjs.gxt.themes.Themes' />
+
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='eg.net.lanNansahom.client.BackEnd'/>
+
+  
+  <!-- Specify the paths for translatable code                    -->
+  <source path='client'/>
+  <source path='shared'/>
+<extend-property name="locale" values="en_UK"/>
+</module>

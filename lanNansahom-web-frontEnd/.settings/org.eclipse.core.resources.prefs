@@ -1,0 +1,12 @@
+#Fri Aug 17 20:43:23 GMT+02:00 2012
+eclipse.preferences.version=1
+encoding//src/main/java/eg/net/lanNansahom/client/JSONDataReader.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/client/widget/announcement/AnnouncementPanel.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/client/widget/application/AboutUsPanel.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/client/widget/application/ContactUsPanel.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/client/widget/application/InjuredHomePage.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/client/widget/victims/ListVictimsPanel.java=UTF-8
+encoding//src/main/java/eg/net/lanNansahom/server/CrawlFilter.java=UTF-8
+encoding//src/main/resources/eg/net/lanNansahom/client/Messages.properties=UTF-8
+encoding//src/main/webapp/FrontEnd.jsp=UTF-8
+encoding//target/generated-sources/gwt/eg/net/lanNansahom/client/Messages.java=UTF-8

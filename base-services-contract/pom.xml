@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>eg.net.lanNansahom</groupId>
+		<artifactId>lanNansahom-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../lanNansahom-parent</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eg.net</groupId>
+	<artifactId>base-services-contract</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+	</dependencies>
+</project>

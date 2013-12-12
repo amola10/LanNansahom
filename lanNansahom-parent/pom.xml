@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>eg.net.lanNansahom</groupId>
+		<artifactId>lanNansahom-deps</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../lanNansahom-deps</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eg.net.lanNansahom</groupId>
+	<artifactId>lanNansahom-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.5</source>
+						<target>1.5</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>Common</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>net.alchim31.maven</groupId>
+						<artifactId>yuicompressor-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>compress</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<gzip>true</gzip>
+							<nosuffix>true</nosuffix>
+							<force>true</force>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<modules>
+				<module>../base-gxt</module>
+				<module>../base-services-contract</module>
+				<module>../base-services</module>
+				<module>../lanNansahom-services-contract</module>
+				<module>../lanNansahom-services</module>
+				<module>../lanNansahom-web-common</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>Admin</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<modules>
+				<module>../lanNansahom-web-administration</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>Front</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<modules>
+				<module>../lanNansahom-web-frontEnd</module>
+			</modules>
+		</profile>
+	</profiles>
+
+</project>

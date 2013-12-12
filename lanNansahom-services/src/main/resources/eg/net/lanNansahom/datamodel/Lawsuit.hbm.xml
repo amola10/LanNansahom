@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2011 8:10:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="eg.net.lanNansahom.datamodel.Lawsuit" table="lawsuit" catalog="lannansahom">
+        <id name="id" type="int">
+            <column name="ID" />
+             <generator class="increment" />
+        </id>
+        <many-to-one name="court" class="eg.net.lanNansahom.datamodel.Court" fetch="select">
+            <column name="courtID" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="65535" />
+        </property>
+        <property name="judgeName" type="string">
+            <column name="judgeName" length="50" />
+        </property>
+        <property name="number" type="string">
+            <column name="number" length="20" />
+        </property>
+        <set name="lawsuitLawyerses" table="lawsuit_lawyers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lawSuitID" not-null="true" />
+            </key>
+            <one-to-many class="eg.net.lanNansahom.datamodel.LawsuitLawyers" />
+        </set>
+        <set name="courtSessions" table="court_session" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lawSuitID" not-null="true" />
+            </key>
+            <one-to-many class="eg.net.lanNansahom.datamodel.CourtSession" />
+        </set>
+        <set name="victims" table="victim" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="lawSuitID" />
+            </key>
+            <one-to-many class="eg.net.lanNansahom.datamodel.Victim" />
+        </set>
+    </class>
+</hibernate-mapping>

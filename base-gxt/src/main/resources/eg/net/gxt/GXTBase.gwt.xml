@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="GXTBase">
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name="com.google.gwt.i18n.I18N" />
+	<inherits name="com.google.gwt.http.HTTP"/>
+
+	<inherits name="com.extjs.gxt.ui.GXT" />
+	<inherits name="com.extjs.gxt.charts.Chart" />
+	<inherits name='gxt.multiupload.MultiUpload' />
+	<!-- <inherits name="org.spacetimeresearch.gwt.addthis.AddThisWidget"/> -->
+
+
+  	<inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
+  	<extend-property name="log_level" values="DEBUG,WARN"/>
+
+
+</module>

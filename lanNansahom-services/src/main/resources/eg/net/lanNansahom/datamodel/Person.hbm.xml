@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2011 8:10:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="eg.net.lanNansahom.datamodel.Person" table="person"
+		catalog="lannansahom">
+		<id name="id" type="int">
+			<column name="ID" />
+			 <generator class="increment" />
+		</id>
+		<property name="name" type="string">
+			<column name="name" length="120" />
+		</property>
+		<property name="nationalId" type="string">
+			<column name="nationalId" length="30" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="50" />
+		</property>
+		<property name="homeNumber" type="string">
+			<column name="home" length="20" />
+		</property>
+		<property name="mobileNumber" type="string">
+			<column name="mobile" length="20" />
+		</property>
+		<property name="published" type="java.lang.Boolean">
+			<column name="isPublished" />
+		</property>
+		<property name="contatctPublished" type="java.lang.Boolean">
+			<column name="isContatctPublished" />
+		</property>
+		<joined-subclass name="eg.net.lanNansahom.datamodel.Victim"
+			table="victim" catalog="lannansahom">
+			<key column="ID" />
+			<property name="address" type="string">
+				<column name="address" length="100" />
+			</property>
+			<property name="birthDate" type="date">
+				<column name="birthDate" length="10" />
+			</property>
+			<property name="age" type="int">
+				<column name="age"  />
+			</property>
+			<property name="description" type="string">
+				<column name="description" length="65535" />
+			</property>
+			<property name="employer" type="string">
+				<column name="employer" length="100" />
+			</property>
+			<!-- <many-to-one name="lawsuit" class="eg.net.lanNansahom.datamodel.Lawsuit" 
+				fetch="select">
+				<column name="lawSuitID" />
+			</many-to-one> -->
+			<many-to-one name="residenceArea" class="eg.net.lanNansahom.datamodel.Area"
+				fetch="join" lazy="false">
+				<column name="residenceID" />
+			</many-to-one>
+			<many-to-one name="source" class="eg.net.lanNansahom.datamodel.Source"
+				fetch="join" lazy="false">
+				<column name="sourceID" />
+			</many-to-one>
+			<many-to-one name="education"
+				class="eg.net.lanNansahom.datamodel.Education" fetch="select" lazy="false">
+				<column name="educationID" />
+			</many-to-one>
+			<many-to-one name="placeOfBirth" class="eg.net.lanNansahom.datamodel.Area"
+				fetch="select" lazy="false">
+				<column name="placeOfBirthID" />
+			</many-to-one>
+			<many-to-one name="hospital" class="eg.net.lanNansahom.datamodel.Hospital"
+				fetch="select" lazy="false">
+				<column name="hospitalID" />
+			</many-to-one>
+			<many-to-one name="job" class="eg.net.lanNansahom.datamodel.Job"
+				fetch="select" lazy="false">
+				<column name="jobID" />
+			</many-to-one>
+			<many-to-one name="recordStatus" class="eg.net.lanNansahom.datamodel.RecordStatus"
+				fetch="select" lazy="false">
+				<column name="recordStatusID" />
+			</many-to-one>
+			<bag name="relatives" table="victim_relatives" cascade="all" lazy="false">
+				<key>
+					<column name="victimID" />
+				</key>
+				<many-to-many column="victimRelativeId" class="eg.net.lanNansahom.datamodel.Relative"/>
+			</bag>
+			<bag name="images" table="image" inverse="false" cascade="all" lazy="false" fetch="select">
+				<key>
+					<column name="VictimID" />
+				</key>
+				<one-to-many class="eg.net.lanNansahom.datamodel.Image" />
+			</bag>
+			<bag name="videos" table="video" inverse="false" cascade="all" lazy="false" fetch="select">
+				<key>
+					<column name="VictimID" />
+				</key>
+				<one-to-many class="eg.net.lanNansahom.datamodel.Video" />
+			</bag>
+			<bag name="articles" table="victim_articles" cascade="all" lazy="false" fetch="select" >
+				<key>
+					<column name="victimID" />
+				</key>
+				<many-to-many column="articleID" class="eg.net.lanNansahom.datamodel.Article" />
+			</bag>
+			
+			<joined-subclass name="eg.net.lanNansahom.datamodel.Injured"
+				table="injured" catalog="lannansahom">
+				<key column="ID" />
+				<many-to-one name="injuryArea" class="eg.net.lanNansahom.datamodel.Area"
+					fetch="select" lazy="false">
+					<column name="injuryPlaceID" />
+				</many-to-one>
+				<property name="injuryDate" type="date">
+					<column name="injuryDate" length="10" />
+				</property>
+				<property name="medicalDescription" type="string">
+					<column name="medicalDescription" length="65535" />
+				</property>
+			</joined-subclass>
+			<joined-subclass name="eg.net.lanNansahom.datamodel.Martyr"
+				table="martyr" catalog="lannansahom">
+				<key column="ID" />
+				<many-to-one name="injuryArea" class="eg.net.lanNansahom.datamodel.Area"
+					fetch="select" lazy="false">
+					<column name="injuryPlaceID" />
+				</many-to-one>
+				<many-to-one name="deathArea" class="eg.net.lanNansahom.datamodel.Area"
+					fetch="select" lazy="false">
+					<column name="deathPlaceID" />
+				</many-to-one>
+				<many-to-one name="corpseDiscoveryArea" class="eg.net.lanNansahom.datamodel.Area"
+					fetch="select" lazy="false">
+					<column name="corpseDiscoveryPlaceID" />
+				</many-to-one>
+				<property name="corpseDiscoveryDate" type="date">
+					<column name="corpseDiscoveryDate" length="10" />
+				</property>
+				<property name="deathDate" type="date">
+					<column name="deathDate" length="10" />
+				</property>
+				<property name="injuryDate" type="date">
+					<column name="injuryDate" length="10" />
+				</property>
+				<property name="medicalDescription" type="string">
+					<column name="medicalDescription" length="65535" />
+				</property>
+			</joined-subclass>
+		</joined-subclass>
+	<!-- <joined-subclass name="eg.net.lanNansahom.datamodel.Lawyer"
+			table="lawyer" catalog="lannansahom" >
+			
+			<key column="ID" />
+			<many-to-one name="lawOrganization"
+				class="eg.net.lanNansahom.datamodel.LawOrganization" fetch="select">
+				<column name="centerID" />
+			</many-to-one>
+			<property name="licenceNumber" type="string">
+				<column name="licenceNumber" length="20" />
+			</property>
+			<set name="lawsuitLawyerses" table="lawsuit_lawyers" inverse="true"
+				lazy="true" fetch="select">
+				<key>
+					<column name="lawyerID" not-null="true" />
+				</key>
+				<one-to-many class="eg.net.lanNansahom.datamodel.LawsuitLawyers" />
+			</set>
+		</joined-subclass> -->	
+		<joined-subclass name="eg.net.lanNansahom.datamodel.Relative"
+			table="relative" catalog="lannansahom" >
+			<key column="ID" />
+			 <many-to-one name="relationship"
+				class="eg.net.lanNansahom.datamodel.Relationship" fetch="select" lazy="false">
+				<column name="relashionshipID" />
+			</many-to-one>
+		</joined-subclass>
+	</class>
+
+</hibernate-mapping>

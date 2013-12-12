@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>eg.net.lanNansahom</groupId>
+		<artifactId>lanNansahom-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../lanNansahom-parent</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eg.net.lanNansahom</groupId>
+	<artifactId>lanNansahom-services-contract</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>eg.net</groupId>
+			<artifactId>base-services-contract</artifactId>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- ... or ask the plugin to detect them based on gwt modules files and 
+				copy the required java sources -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.5</source>
+						<target>1.5</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<configuration>
+						<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+						<wtpmanifest>true</wtpmanifest>
+						<wtpapplicationxml>true</wtpapplicationxml>
+						<wtpversion>2.0</wtpversion>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

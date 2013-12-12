@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2011 8:10:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="eg.net.lanNansahom.datamodel.Image" table="image" catalog="lannansahom">
+        <id name="id" type="int">
+            <column name="ID" />
+             <generator class="increment" />
+        </id>
+        <many-to-one name="category" class="eg.net.lanNansahom.datamodel.ImageCategory" fetch="join" lazy="false">
+            <column name="CategoryID" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="Description" length="400" />
+        </property>
+        <property name="url" type="string">
+            <column name="URL" length="400" />
+        </property>
+        <property name="owner" type="string">
+            <column name="TakenBy" length="100" />
+        </property>
+        <property name="date" type="date">
+            <column name="ImageDate" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

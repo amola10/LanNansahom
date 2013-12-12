@@ -1,0 +1,842 @@
+/*
+ * JScroll CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 12px;
+	height: 100%;
+	background: #595959;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 12px;
+	background: #595959;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	background: #595959;
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #AD0505;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+.jspArrow
+{
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrowUp 
+{
+	background-image: url("/jquery/jscrollpane/arrow-up.gif");
+}
+
+.jspArrowDown
+{
+	background-image: url("/jquery/jscrollpane/arrow-down.gif");
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 12px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+	width: 12px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	/*background: #eeeef4;*/
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}
+
+/*
+ * FancyBox - jQuery Plugin
+ * Simple and fancy lightbox alternative
+ *
+ * Examples and documentation at: http://fancybox.net
+ * 
+ * Copyright (c) 2008 - 2010 Janis Skarnelis
+ * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
+ * 
+ * Version: 1.3.4 (11/11/2010)
+ * Requires: jQuery v1.3+
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ */
+
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	margin-top: -20px;
+	margin-left: -20px;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 1104;
+}
+
+#fancybox-loading div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 480px;
+	background-image: url('/jquery/fancybox/fancybox.png');
+}
+
+#fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1100;
+	display: none;
+}
+
+#fancybox-tmp {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	overflow: auto;
+	display: none;
+}
+
+#fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 20px;
+	z-index: 1101;
+	outline: none;
+	display: none;
+}
+
+#fancybox-outer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+
+#fancybox-content {
+	width: 0;
+	height: 0;
+	padding: 0;
+	outline: none;
+	position: relative;
+	overflow: hidden;
+	z-index: 1102;
+	border: 0px solid #fff;
+}
+
+#fancybox-hide-sel-frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	z-index: 1101;
+}
+
+#fancybox-close {
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	width: 30px;
+	height: 30px;
+	background: transparent url('/jquery/fancybox/fancybox.png') -40px 0px;
+	cursor: pointer;
+	z-index: 1103;
+	display: none;
+}
+
+#fancybox-error {
+	color: #444;
+	font: normal 12px/20px Arial;
+	padding: 14px;
+	margin: 0;
+}
+
+#fancybox-img {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border: none;
+	outline: none;
+	line-height: 0;
+	vertical-align: top;
+}
+
+#fancybox-frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+	display: block;
+}
+
+#fancybox-left, #fancybox-right {
+	position: absolute;
+	bottom: 0px;
+	height: 100%;
+	width: 35%;
+	cursor: pointer;
+	outline: none;
+	background: transparent url('/jquery/fancybox/blank.gif');
+	z-index: 1102;
+	display: none;
+}
+
+#fancybox-left {
+	left: 0px;
+}
+
+#fancybox-right {
+	right: 0px;
+}
+
+#fancybox-left-ico, #fancybox-right-ico {
+	position: absolute;
+	top: 50%;
+	left: -9999px;
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	cursor: pointer;
+	z-index: 1102;
+	display: block;
+}
+
+#fancybox-left-ico {
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -30px;
+}
+
+#fancybox-right-ico {
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -60px;
+}
+
+#fancybox-left:hover, #fancybox-right:hover {
+	visibility: visible; /* IE6 */
+}
+
+#fancybox-left:hover span {
+	left: 20px;
+}
+
+#fancybox-right:hover span {
+	left: auto;
+	right: 20px;
+}
+
+.fancybox-bg {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	width: 20px;
+	height: 20px;
+	z-index: 1001;
+}
+
+#fancybox-bg-n {
+	top: -20px;
+	left: 0;
+	width: 100%;
+	background-image: url('/jquery/fancybox/fancybox-x.png');
+}
+
+#fancybox-bg-ne {
+	top: -20px;
+	right: -20px;
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -162px;
+}
+
+#fancybox-bg-e {
+	top: 0;
+	right: -20px;
+	height: 100%;
+	background-image: url('/jquery/fancybox/fancybox-y.png');
+	background-position: -20px 0px;
+}
+
+#fancybox-bg-se {
+	bottom: -20px;
+	right: -20px;
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -182px; 
+}
+
+#fancybox-bg-s {
+	bottom: -20px;
+	left: 0;
+	width: 100%;
+	background-image: url('/jquery/fancybox/fancybox-x.png');
+	background-position: 0px -20px;
+}
+
+#fancybox-bg-sw {
+	bottom: -20px;
+	left: -20px;
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -142px;
+}
+
+#fancybox-bg-w {
+	top: 0;
+	left: -20px;
+	height: 100%;
+	background-image: url('/jquery/fancybox/fancybox-y.png');
+}
+
+#fancybox-bg-nw {
+	top: -20px;
+	left: -20px;
+	background-image: url('/jquery/fancybox/fancybox.png');
+	background-position: -40px -122px;
+}
+
+#fancybox-title {
+	font-family: Helvetica;
+	font-size: 12px;
+	z-index: 1102;
+}
+
+.fancybox-title-inside {
+	padding-bottom: 10px;
+	text-align: center;
+	color: #333;
+	background: #fff;
+	position: relative;
+}
+
+.fancybox-title-outside {
+	padding-top: 10px;
+	color: #fff;
+}
+
+.fancybox-title-over {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #FFF;
+	text-align: left;
+}
+
+#fancybox-title-over {
+	padding: 10px;
+	background-image: url('/jquery/fancybox/fancy_title_over.png');
+	display: block;
+}
+
+.fancybox-title-float {
+	position: absolute;
+	left: 0;
+	bottom: -20px;
+	height: 32px;
+}
+
+#fancybox-title-float-wrap {
+	border: none;
+	border-collapse: collapse;
+	width: auto;
+}
+
+#fancybox-title-float-wrap td {
+	border: none;
+	white-space: nowrap;
+}
+
+#fancybox-title-float-left {
+	padding: 0 0 0 15px;
+	background: url('/jquery/fancybox/fancybox.png') -40px -90px no-repeat;
+}
+
+#fancybox-title-float-main {
+	color: #FFF;
+	line-height: 29px;
+	font-weight: bold;
+	padding: 0 0 3px 0;
+	background: url('/jquery/fancybox/fancybox-x.png') 0px -40px;
+}
+
+#fancybox-title-float-right {
+	padding: 0 0 0 15px;
+	background: url('/jquery/fancybox/fancybox.png') -55px -90px no-repeat;
+}
+
+/* IE6 */
+
+.fancybox-ie6 #fancybox-close { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_close.png', sizingMethod='scale'); }
+
+.fancybox-ie6 #fancybox-left-ico { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_nav_left.png', sizingMethod='scale'); }
+.fancybox-ie6 #fancybox-right-ico { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_nav_right.png', sizingMethod='scale'); }
+
+.fancybox-ie6 #fancybox-title-over { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_title_over.png', sizingMethod='scale'); zoom: 1; }
+.fancybox-ie6 #fancybox-title-float-left { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_title_left.png', sizingMethod='scale'); }
+.fancybox-ie6 #fancybox-title-float-main { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_title_main.png', sizingMethod='scale'); }
+.fancybox-ie6 #fancybox-title-float-right { background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_title_right.png', sizingMethod='scale'); }
+
+.fancybox-ie6 #fancybox-bg-w, .fancybox-ie6 #fancybox-bg-e, .fancybox-ie6 #fancybox-left, .fancybox-ie6 #fancybox-right, #fancybox-hide-sel-frame {
+	height: expression(this.parentNode.clientHeight + "px");
+}
+
+#fancybox-loading.fancybox-ie6 {
+	position: absolute; margin-top: 0;
+	top: expression( (-20 + (document.documentElement.clientHeight ? document.documentElement.clientHeight/2 : document.body.clientHeight/2 ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop )) + 'px');
+}
+
+#fancybox-loading.fancybox-ie6 div	{ background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_loading.png', sizingMethod='scale'); }
+
+/* IE6, IE7, IE8 */
+
+.fancybox-ie .fancybox-bg { background: transparent !important; }
+
+.fancybox-ie #fancybox-bg-n { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_n.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-ne { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_ne.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-e { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_e.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-se { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_se.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-s { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_s.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-sw { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_sw.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-w { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_w.png', sizingMethod='scale'); }
+.fancybox-ie #fancybox-bg-nw { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/jquery/fancybox/fancy_shadow_nw.png', sizingMethod='scale'); }
+
+/** Front End css rules here for your application. */
+html,body,div , label {
+	font-style: normal;
+	font-weight: normal;
+	font: 13px tahoma, arial, helvetica;
+}
+
+html,body{
+	overflow: auto !important;
+}
+.x-viewport {
+	margin: auto !important;
+}
+
+.sendButton {
+	display: block;
+	font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+	width: 400px;
+}
+
+.dialogVPanel {
+	margin: 5px;
+}
+
+.serverResponseLabelError {
+	color: red;
+}
+
+
+.header {
+	
+}
+
+.rightHeader,.middleHeader {
+	background-image: url("/images/background.png");
+	background-repeat: repeat-x;
+	top: 16px;
+	position: relative;
+}
+
+.leftHeader {
+	background-image: url("/images/left-header-background.png");
+	background-repeat: repeat-x;
+}
+
+.homepage_link,.imageLink,.about_link,.martyrs_link,.injured_link,.contactus_link,.facebook_link,.rss_link,.youtube_link,.twitter_link,.logoHeader,.martyrsByImage,.martyrsByName,.martyrsStatistics,.searchButton,.advancedSearchButton
+	{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.homepage_link{
+	padding-right: 15px;
+}
+
+.facebook_link,.rss_link,.youtube_link,.twitter_link {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.facebook_link {
+	margin-left: 10px;
+}
+
+.twitter_link {
+	margin-right: 10px;
+}
+
+.headerBackground,.logoHeader {
+	background-image: url("/images/header_bg.jpg") !important;
+	background-repeat: repeat-x;
+}
+
+.logo {
+	width: 432px;
+	height: 70px;
+	padding-top: 50px;
+	padding-bottom: 22px;
+	padding-right: 30px;
+}
+
+.logoHeader {
+	width: 432px;
+	padding-top: 20px;
+	padding-right: 30px;
+}
+
+.martyrsHeader {
+	
+}
+
+.footer {
+	background-image: url("/images/mergedImages.png");
+	background-position: 0 -118px; width: 940px; height: 31px;
+	background-repeat: no-repeat;
+}
+
+.gwt-Anchor {
+	cursor: pointer;
+	cursor: hand;
+	color: white;
+	background-color: black;
+	background-image: none;
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+	background-position: left top;
+	text-decoration: none;
+	width: 100%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: -moz-use-text-color;
+	border-top-color: black;
+	border-right-width-value: 1px;
+	border-right-width-ltr-source: physical;
+	border-right-width-rtl-source: physical;
+	border-right-style-value: solid;
+	border-right-style-ltr-source: physical;
+	border-right-style-rtl-source: physical;
+	border-right-color-value: -moz-use-text-color;
+	border-right-color-ltr-source: physical;
+	border-right-color-rtl-source: physical;
+	border-right-color-value: black;
+	border-right-color-ltr-source: physical;
+	border-right-color-rtl-source: physical;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: -moz-use-text-color;
+	border-bottom-color: black;
+	border-left-width-value: 1px;
+	border-left-width-ltr-source: physical;
+	border-left-width-rtl-source: physical;
+	border-left-style-value: solid;
+	border-left-style-ltr-source: physical;
+	border-left-style-rtl-source: physical;
+	border-left-color-value: -moz-use-text-color;
+	border-left-color-ltr-source: physical;
+	border-left-color-rtl-source: physical;
+	border-left-color-value: black;
+	border-left-color-ltr-source: physical;
+	border-left-color-rtl-source: physical;
+}
+
+.gwt-Anchor:HOVER {
+	background-color: black !important;
+}
+
+.thumb {
+	background: black;
+	padding: 0px;
+	height: 70px;
+	width: 70px;
+}
+
+.thumb img {
+	height: 70px;
+	width: 70px;
+}
+
+.thumb-wrap {
+	float: left;
+	padding: 0px;
+	border: none;
+}
+
+.thumbGallery {
+	background-image: url("/images/graybackground.png");
+	background-repeat: repeat-x repeat-y;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 70px;
+	width: 70px;
+}
+
+.thumbGallery img {
+	height: 70px;
+	width: 70px;
+	border : solid 2px white;
+}
+
+.thumbGallery-wrap {
+	float: left;
+	padding: 0px;
+	border: none;
+}
+
+.thumbVideo {
+	background-image: url("/images/graybackground.png");
+	background-repeat: repeat-x repeat-y;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100px;
+	height: 70px;
+}
+
+.thumbVideo img {
+	width: 100px;
+	height: 70px;
+	border : solid 2px white;
+}
+
+.thumbVideo object {
+	width: 100px;
+	height: 70px;
+	border: 1px solid white;
+}
+
+.thumbVideo-wrap {
+	float: left;
+	padding: 0px;
+	border: none;
+}
+
+.x-theme-black .thumb-wrap {
+	border: 1px solid black;
+}
+
+.x-view-selected .thumb {
+	background: transparent;
+}
+
+.x-theme-black .thumbVideo-wrap {
+	border: none;
+}
+
+.x-view-selected .thumbVideo {
+	background: transparent;
+}
+
+.x-theme-black .thumbVideo-wrap {
+	border: none;
+}
+
+.x-view-selected .thumbVideo {
+	background: transparent;
+}
+
+.grayPanel {
+	background-image: url("/images/graybackground.png");
+	background-repeat: repeat-x repeat-y;
+}
+
+.scrollPane {
+	overflow: hidden;
+	height: 100%;
+	padding-right: 13px;
+}
+
+.profilePicture img {
+	border: solid white 3px;
+}
+
+.victimName {
+	font-weight: bold;
+	font-size : 18px;
+	color:#AD0505;
+	padding-bottom: 30px;
+	padding-top: 10px;
+	padding-right: 10px;
+	line-height: 20px !important;
+}
+
+.victimAge,.victimArea,.victimDate,.victimEducation,.victimJob {
+	padding: 5px;
+	padding-right: 10px;
+}
+
+.contactUs,.aboutUs {
+	padding-right: 20px;
+	font: 14px tahoma, arial, helvetica !important;
+}
+
+.aboutUs  div {
+	line-height: 20px !important;
+}
+
+.contactUs div {
+	line-height: 30px !important;
+}
+
+.victimDescription {
+	padding-top: 80px;
+	line-height: 20px !important;
+	padding-right: 10px;
+}
+
+.victimNameLink {
+	padding: 5px 15px 5px 0px;
+	background: url("/images/bullet.png") no-repeat right center ;
+}
+
+.victimNameLink a:hover {
+	color: red;
+}
+
+.announcement {
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	background: url("/images/bullet.png") no-repeat right center ;
+}
+
+.tooltip {
+	display:none;
+	background:transparent url(/images/mergedImages.png);
+	background-position: 0 0; width: 167px; height: 98px;
+	font-size:10px;
+	height:70px;
+	width:138px;
+	padding:15px;
+	color:#fff;	
+	line-height: 20px 
+}
+
+
+.contactUsEmail{
+	 font-weight: bold;
+	 padding-right : 10px;
+}
+
+.victimsList{
+	border: 1px solid #18181a !important;
+}
+
+.remark{
+	 padding-right : 10px;
+	 font-size:12px;
+}
+
+.fb_edge_widget_with_comment span.fb_edge_comment_widget {
+    position:fixed!important;
+	top: 520px!important;
+	left:300px!important;
+}
+
+.addthis_button_facebook_like{
+	background-color: black;
+}
+
+.more{
+	padding : 10px;
+	padding-right : 150px;
+	color : red;
+}
+
+
+.navigationPanel{
+	background-image: url("/images/mergedImages.png");
+	background-position: 0 -154px; width: 701px; height: 27px;
+	background-repeat: no-repeat;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	  <filter>
+		<filter-name>CrawlFilter</filter-name>
+		<filter-class>eg.net.lanNansahom.server.CrawlFilter</filter-class>
+		<init-param>
+			<param-name>applicationURL</param-name>
+			<param-value>http://lan-nansahom-front.appspot.com</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CrawlFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> 
+	<listener>
+		<listener-class>eg.net.lanNansahom.server.ApplicationStartup</listener-class>
+	</listener>
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>CoreService</servlet-name>
+		<servlet-class>eg.net.lanNansahom.server.CoreServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>VictimsService</servlet-name>
+		<servlet-class>eg.net.lanNansahom.server.VictimsRemoteServiceImpl</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RSSFeedsServlet</servlet-name>
+		<servlet-class>eg.net.lanNansahom.server.RSSFeedsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CoreService</servlet-name>
+		<url-pattern>/FrontEnd/core</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>VictimsService</servlet-name>
+		<url-pattern>/FrontEnd/victims</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RSSFeedsServlet</servlet-name>
+		<url-pattern>/feeds/rss</url-pattern>
+	</servlet-mapping>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>FrontEnd.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2011 8:10:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="eg.net.lanNansahom.datamodel.LawsuitLawyers" table="lawsuit_lawyers" catalog="lannansahom">
+        <composite-id name="id" class="eg.net.lanNansahom.datamodel.LawsuitLawyersId">
+            <key-property name="lawyerId" type="int">
+                <column name="lawyerID" />
+            </key-property>
+            <key-property name="lawSuitId" type="int">
+                <column name="lawSuitID" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="lawsuit" class="eg.net.lanNansahom.datamodel.Lawsuit" update="false" insert="false" fetch="select">
+            <column name="lawSuitID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="lawyer" class="eg.net.lanNansahom.datamodel.Lawyer" update="false" insert="false" fetch="select">
+            <column name="lawyerID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
