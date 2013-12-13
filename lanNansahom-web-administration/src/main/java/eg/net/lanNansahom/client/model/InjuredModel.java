@@ -35,6 +35,10 @@ public class InjuredModel extends VictimModel {
 		this.deleteVictim(injuredBean);
 	}
 
+	public void generatePublishedInjuries() {
+		this.generateVictims(false);
+	}
+
 	@Override
 	protected EventType getSearchEvent() {
 		return AppEvents.SEARCH_INJURIES;

@@ -98,6 +98,15 @@ public abstract class SearchVictimsGrid<T extends VictimBean> extends PagingData
 		});
 		panel.addButton(button);
 
+		button = new Button(messages.generate());
+		panel.addButton(button);
+		button.addSelectionListener(new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				Dispatcher.forwardEvent(getGenerateEvent());
+
+			}
+		});
 		button = new Button("Cancel");
 		button.addSelectionListener(new SelectionListener<ButtonEvent>() {
 			@Override
@@ -134,4 +143,5 @@ public abstract class SearchVictimsGrid<T extends VictimBean> extends PagingData
 
 	protected abstract EventType getDeleteEvent();
 
+	protected abstract EventType getGenerateEvent();
 }

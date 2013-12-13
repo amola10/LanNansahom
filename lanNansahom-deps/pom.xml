@@ -30,10 +30,7 @@
 		<version.org.apache.abdera>1.1.1</version.org.apache.abdera>
 		<version.poi>3.1-FINAL</version.poi>
 		<version.javax.mail>1.4.4</version.javax.mail>
-		<version.gae>1.7.0</version.gae>
-		<version.htmlunit>2.10</version.htmlunit>
-		<version.gwt-log>3.1.8</version.gwt-log>
-		<gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${version.gae}/appengine-java-sdk-${version.gae}</gae.home>
+
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -100,41 +97,7 @@
 				<artifactId>gwt-addthis</artifactId>
 				<version>${version.gwt-addthis}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.allen-sauer.gwt.log</groupId>
-				<artifactId>gwt-log</artifactId>
-				<version>${version.gwt-log}</version>
-			</dependency>
-			<!-- Google App Engine Deps -->
-			<dependency>
-				<groupId>com.google.appengine</groupId>
-				<artifactId>appengine-api-1.0-sdk</artifactId>
-				<version>${version.gae}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.appengine</groupId>
-				<artifactId>appengine-api-labs</artifactId>
-				<version>${version.gae}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.appengine</groupId>
-				<artifactId>appengine-api-stubs</artifactId>
-				<version>${version.gae}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.google.appengine</groupId>
-				<artifactId>appengine-testing</artifactId>
-				<version>${version.gae}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>net.sourceforge.htmlunit</groupId>
-				<artifactId>htmlunit</artifactId>
-				<version>${version.htmlunit}</version>
-			</dependency>
-			            
+
 			<!-- Spring dependencies -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -161,10 +124,48 @@
 				<artifactId>hibernate-core</artifactId>
 				<version>${version.hibernate.core}</version>
 			</dependency>
+
+			<!-- CXF dependencies -->
 			<dependency>
-				<groupId>org.codehaus.jettison</groupId>
-				<artifactId>jettison</artifactId>
-				<version>${version.json}</version>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${version.cxf}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>asm</groupId>
+						<artifactId>asm</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${version.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${version.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-databinding-aegis</artifactId>
+				<version>${version.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans</artifactId>
+				<version>${version.xmlbean}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version>${version.xmlbean}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.security</groupId>
+				<artifactId>wss4j</artifactId>
+				<version>${version.org.apache.ws.security.wss4j}</version>
 			</dependency>
 			<!-- SQL Connector dependencies -->
 			<dependency>
@@ -238,11 +239,6 @@
 			<dependency>
 				<groupId>eg.net.lanNansahom</groupId>
 				<artifactId>lanNansahom-services-contract</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>eg.net.lanNansahom</groupId>
-				<artifactId>lanNansahom-services</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

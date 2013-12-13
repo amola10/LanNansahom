@@ -1,0 +1,1 @@
+var announcments ='[{"BINDING_TITLE":"لا جديد تحت الشمس","BINDING_TEXT":"لا جديد تحت الشمس"},{"BINDING_TITLE":"الخبر الجديد","BINDING_TEXT":"الخبر الجديد"}]';

@@ -12,7 +12,7 @@ public class ApplicationController extends BaseController {
 	private static final String FACEBOOK_PAGE_URL = "http://www.facebook.com/pages/%D9%84%D9%86-%D9%86%D9%86%D8%B3%D8%A7%D9%87%D9%85-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%AF%D8%B1%D8%A9-%D8%A7%D9%84%D8%B4%D8%B9%D8%A8%D9%8A%D8%A9-%D9%84%D8%AA%D9%83%D8%B1%D9%8A%D9%85-%D8%B4%D9%87%D8%AF%D8%A7%D8%A1-%D9%88%D9%85%D8%B5%D8%A7%D8%A8%D9%89-%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D8%A9/132838593473626";;
 	private static final String YOUTUBE_URL = "http://www.youtube.com/LanNansahom1";
 	private static final String TWITTER_URL = "https://twitter.com/#!/LanNansahom";
-	private static final String RSS_URL = "/feeds/rss";
+	private static final String RSS_URL = "/lanNansahom-web-frontEnd/feeds/rss";
 
 	private final ApplicationView view;
 

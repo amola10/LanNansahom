@@ -81,4 +81,9 @@ public class SearchInjuriesGrid extends SearchVictimsGrid<InjuredBean> {
 		return AppEvents.DELETE_INJURED;
 	}
 
+	@Override
+	protected EventType getGenerateEvent() {
+		return AppEvents.GENERATE_INJURED;
+	}
+
 }

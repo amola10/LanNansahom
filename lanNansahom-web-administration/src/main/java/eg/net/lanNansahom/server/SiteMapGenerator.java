@@ -1,5 +1,9 @@
 package eg.net.lanNansahom.server;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,11 +15,14 @@ public class SiteMapGenerator {
 	/**
 	 * Write victims.
 	 * 
+	 * @param pTargetPath
+	 *            the target path
+	 * @param javascriptVarName
+	 *            the javascript var name
 	 * @param pVictims
 	 *            the victims
-	 * @return the string
 	 */
-	public static String generate(List<Victim> pVictims) {
+	public static void generate(String pTargetPath, List<Victim> pVictims) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		StringBuffer map = new StringBuffer();
 		map.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ");
@@ -27,8 +34,32 @@ public class SiteMapGenerator {
 			map.append("</url>");
 		}
 		map.append("</urlset>");
-		return map.toString();
+		sotreFile(pTargetPath, map.toString());
 
 	}
 
+	/**
+	 * Sotre file.
+	 * 
+	 * @param pTargetPath
+	 *            the target path
+	 * @param fileContent
+	 *            the file content
+	 */
+	private static void sotreFile(String pTargetPath, String fileContent) {
+		BufferedWriter bufferedWriter = null;
+		try {
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pTargetPath), "UTF8"));
+			bufferedWriter.write(fileContent);
+			bufferedWriter.flush();
+		} catch (Exception e) {
+			if (bufferedWriter != null) {
+				try {
+					bufferedWriter.close();
+				} catch (IOException e1) {
+				}
+			}
+
+		}
+	}
 }

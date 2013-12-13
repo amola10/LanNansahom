@@ -88,10 +88,21 @@ public class AnnouncementGrid extends PagingDataGrid<AnnouncementBean> implement
 		button.addSelectionListener(new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent buttonEvent) {
-				Dispatcher.forwardEvent(AppEvents.HOME_PAGE, "back");
+				Dispatcher.forwardEvent(AppEvents.HOME_PAGE);
 			}
 		});
 		panel.addButton(button);
+
+		button = new Button(messages.generate());
+		button.addSelectionListener(new SelectionListener<ButtonEvent>() {
+			@Override
+			public void componentSelected(ButtonEvent ce) {
+				Dispatcher.forwardEvent(AppEvents.GENERATE_ANNOUNCEMENT);
+
+			}
+		});
+		panel.addButton(button);
+
 	}
 
 	/*

@@ -33,8 +33,13 @@ public class ExportServlet extends HttpServlet {
 
 	private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-	private final boolean inCloudMode = true;
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
+	 * , javax.servlet.http.HttpServletResponse)
+	 */
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -103,15 +108,14 @@ public class ExportServlet extends HttpServlet {
 			}
 			rowNumber++;
 		}
-		if (!inCloudMode) {
-			sheet.autoSizeColumn((short) 0);
-			sheet.autoSizeColumn((short) 1);
-			sheet.autoSizeColumn((short) 2);
-			sheet.autoSizeColumn((short) 3);
-			if (isMartyr) {
-				sheet.autoSizeColumn((short) 4);
-				sheet.autoSizeColumn((short) 5);
-			}
+
+		sheet.autoSizeColumn((short) 0);
+		sheet.autoSizeColumn((short) 1);
+		sheet.autoSizeColumn((short) 2);
+		sheet.autoSizeColumn((short) 3);
+		if (isMartyr) {
+			sheet.autoSizeColumn((short) 4);
+			sheet.autoSizeColumn((short) 5);
 		}
 
 	}
@@ -148,16 +152,15 @@ public class ExportServlet extends HttpServlet {
 			rowNumber++;
 		}
 
-		if (!inCloudMode) {
-			sheet.autoSizeColumn((short) 0);
-			sheet.autoSizeColumn((short) 1);
-			sheet.autoSizeColumn((short) 2);
-			sheet.autoSizeColumn((short) 3);
-			sheet.autoSizeColumn((short) 4);
-			sheet.autoSizeColumn((short) 5);
-			sheet.autoSizeColumn((short) 6);
-			sheet.autoSizeColumn((short) 7);
-		}
+		sheet.autoSizeColumn((short) 0);
+		sheet.autoSizeColumn((short) 1);
+		sheet.autoSizeColumn((short) 2);
+		sheet.autoSizeColumn((short) 3);
+		sheet.autoSizeColumn((short) 4);
+		sheet.autoSizeColumn((short) 5);
+		sheet.autoSizeColumn((short) 6);
+		sheet.autoSizeColumn((short) 7);
+
 	}
 
 	private void createTextSheet(HSSFWorkbook workbook, List<? extends VictimBean> victims) {
@@ -180,10 +183,8 @@ public class ExportServlet extends HttpServlet {
 			rowNumber++;
 		}
 
-		if (!inCloudMode) {
-			sheet.autoSizeColumn((short) 0);
-			sheet.autoSizeColumn((short) 1);
-		}
+		sheet.autoSizeColumn((short) 0);
+		sheet.autoSizeColumn((short) 1);
 
 	}
 
@@ -213,12 +214,12 @@ public class ExportServlet extends HttpServlet {
 			}
 			rowNumber++;
 		}
-		if (!inCloudMode) {
-			sheet.autoSizeColumn((short) 0);
-			sheet.autoSizeColumn((short) 1);
-			sheet.autoSizeColumn((short) 2);
-			sheet.autoSizeColumn((short) 3);
-		}
+
+		sheet.autoSizeColumn((short) 0);
+		sheet.autoSizeColumn((short) 1);
+		sheet.autoSizeColumn((short) 2);
+		sheet.autoSizeColumn((short) 3);
+
 	}
 
 	private void createContactsSheet(HSSFWorkbook workbook, List<? extends VictimBean> victims) {
@@ -258,16 +259,15 @@ public class ExportServlet extends HttpServlet {
 			rowNumber++;
 		}
 
-		if (!inCloudMode) {
-			sheet.autoSizeColumn((short) 0);
-			sheet.autoSizeColumn((short) 1);
-			sheet.autoSizeColumn((short) 2);
-			sheet.autoSizeColumn((short) 3);
-			sheet.autoSizeColumn((short) 4);
-			sheet.autoSizeColumn((short) 5);
-			sheet.autoSizeColumn((short) 6);
-			sheet.autoSizeColumn((short) 7);
-		}
+		sheet.autoSizeColumn((short) 0);
+		sheet.autoSizeColumn((short) 1);
+		sheet.autoSizeColumn((short) 2);
+		sheet.autoSizeColumn((short) 3);
+		sheet.autoSizeColumn((short) 4);
+		sheet.autoSizeColumn((short) 5);
+		sheet.autoSizeColumn((short) 6);
+		sheet.autoSizeColumn((short) 7);
+
 	}
 
 	private List<? extends VictimBean> searchVicitims(HttpServletRequest request) throws ClientException {

@@ -1,8 +1,11 @@
 package eg.net.lanNansahom.services.responses;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import eg.net.lanNansahom.services.beans.Victim;
 import eg.net.services.ServiceResponse;
 
+@XmlRootElement(name = "RetrieveVictimResponse")
 public class RetrieveVictimResponse extends ServiceResponse {
 	private Victim victim;
 

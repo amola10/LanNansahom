@@ -148,7 +148,7 @@
 				</property>
 			</joined-subclass>
 		</joined-subclass>
-	<!-- <joined-subclass name="eg.net.lanNansahom.datamodel.Lawyer"
+	 <joined-subclass name="eg.net.lanNansahom.datamodel.Lawyer"
 			table="lawyer" catalog="lannansahom" >
 			
 			<key column="ID" />
@@ -166,7 +166,7 @@
 				</key>
 				<one-to-many class="eg.net.lanNansahom.datamodel.LawsuitLawyers" />
 			</set>
-		</joined-subclass> -->	
+		</joined-subclass>
 		<joined-subclass name="eg.net.lanNansahom.datamodel.Relative"
 			table="relative" catalog="lannansahom" >
 			<key column="ID" />

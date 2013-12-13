@@ -2,9 +2,12 @@ package eg.net.lanNansahom.services.responses;
 
 import java.util.HashMap;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import eg.net.lanNansahom.services.beans.LookupList;
 import eg.net.services.ServiceResponse;
 
+@XmlRootElement(name = "RetrieveAllLookupResponse")
 public class RetrieveAllLookupResponse extends ServiceResponse {
 
 	private HashMap<String, LookupList> lookups = new HashMap<String, LookupList>();

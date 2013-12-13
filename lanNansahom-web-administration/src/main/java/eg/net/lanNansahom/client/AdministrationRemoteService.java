@@ -28,6 +28,10 @@ public interface AdministrationRemoteService extends RemoteService {
 
 	public void deleteVictim(VictimBean victimBean) throws ClientException;
 
+	public void generateVictims(boolean isMartyr) throws ClientException;
+
+	public void generatePublishAnnouncement() throws ClientException;
+
 	public List<? extends VictimBean> searchVictims(SearchVictimsBean searchVictimsBean) throws ClientException;
 
 	public void addLookup(LookupType type, LookupBean lookupBean) throws ClientException;

@@ -4,25 +4,35 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-	<listener>
-		<listener-class>eg.net.lanNansahom.server.ApplicationStartup</listener-class>
-	</listener>
+
+	<!-- Servlets -->
 	<servlet>
 		<servlet-name>CoreService</servlet-name>
 		<servlet-class>eg.net.lanNansahom.server.CoreServiceImpl</servlet-class>
 	</servlet>
+
 	<servlet>
 		<servlet-name>AdministrationRemoteService</servlet-name>
 		<servlet-class>eg.net.lanNansahom.server.AdministrationRemoteServiceImpl</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>uploadServlet</servlet-name>
+		<servlet-class>eg.net.gxt.server.UploadServlet</servlet-class>
+		<init-param>
+			<param-name>baseDirectory</param-name>
+			<param-value>images</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
 		<servlet-name>ExportServlet</servlet-name>
 		<servlet-class>eg.net.lanNansahom.server.ExportServlet</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>GeneratorServlet</servlet-name>
-		<servlet-class>eg.net.lanNansahom.server.GeneratorServlet</servlet-class>
-	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>uploadServlet</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>CoreService</servlet-name>
 		<url-pattern>/BackEnd/core</url-pattern>
@@ -37,14 +47,37 @@
 		<servlet-name>ExportServlet</servlet-name>
 		<url-pattern>/export</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>GeneratorServlet</servlet-name>
-		<url-pattern>/generate</url-pattern>
-	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>BackEnd.jsp</welcome-file>
+		<welcome-file>BackEnd.html</welcome-file>
 	</welcome-file-list>
 
- </web-app>
+    <!-- Define a Security Constraint on this Application -->  
+   
+      <security-constraint>
+	      <web-resource-collection>
+	         <web-resource-name>lannansahom_administration</web-resource-name>
+	         <url-pattern>/*</url-pattern>
+	         <http-method>GET</http-method>
+	         <http-method>POST</http-method>
+	      </web-resource-collection>
+	      <auth-constraint>
+	           <role-name>lannansahom_administrators</role-name>
+	     </auth-constraint>
+	      <user-data-constraint>
+	         <transport-guarantee>NONE</transport-guarantee>
+	      </user-data-constraint>
+   </security-constraint>
+ 
+	<!-- Define the Login Configuration for this Application -->
+   <login-config>
+      <auth-method>DIGEST</auth-method>
+      <realm-name>lannansahom</realm-name>
+   </login-config>
+     
+	<security-role>
+            <description>lannansahom_administrators</description>
+            <role-name>lannansahom_administrators</role-name>      
+      </security-role>
+</web-app>

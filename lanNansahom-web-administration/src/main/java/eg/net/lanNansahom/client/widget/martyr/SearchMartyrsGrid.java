@@ -81,4 +81,9 @@ public class SearchMartyrsGrid extends SearchVictimsGrid<MartyrBean> {
 		return AppEvents.DELETE_MARTYR;
 	}
 
+	@Override
+	protected EventType getGenerateEvent() {
+		return AppEvents.GENERATE_MARTYRS;
+	}
+
 }

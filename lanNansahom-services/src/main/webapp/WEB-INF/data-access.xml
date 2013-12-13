@@ -1,0 +1,77 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<bean id="LanNansahomDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="${system.database.jindi}"/>
+    	 <property name="resourceRef"  value="true" />
+  	</bean>
+  	
+	<bean id="SessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+     		<ref bean="LanNansahomDataSource"/>
+   		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.bytecode.use_reflection_optimizer" >true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+			   <value>eg/net/lanNansahom/datamodel/Relationship.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Announcement.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Court.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/NewsletterMember.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Video.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Area.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Job.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Lawsuit.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Hospital.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/CourtSession.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/LawsuitLawyers.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/ImageCategory.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Image.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Article.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/VideoCategory.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Person.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Education.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/LawOrganization.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Governrate.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/Source.hbm.xml</value>
+		       <value>eg/net/lanNansahom/datamodel/RecordStatus.hbm.xml</value>
+			</list>
+		</property>
+		<property name="typeDefinitions">
+			<list>
+				<bean class="org.springframework.orm.hibernate3.TypeDefinitionBean">
+					<property name="typeName" value="StringDateType"/>
+         			<property name="typeClass" value="eg.net.lanNansahom.datamodel.StringDateType"/>
+         			<property name="parameters">
+         				<props>
+         					<prop key="datePattern">dd-MM-yyyy</prop>
+         				</props>
+         			</property>
+				</bean>
+				<bean class="org.springframework.orm.hibernate3.TypeDefinitionBean">
+					<property name="typeName" value="trimmedString"/>
+         			<property name="typeClass" value="eg.net.lanNansahom.datamodel.TrimmedString"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="announcementDao" class="eg.net.lanNansahom.dao.impl.AnnouncementDaoImpl"  >
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="martyrDaoImpl" class="eg.net.lanNansahom.dao.impl.MartyrDaoImpl"  >
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="injuredDaoImpl" class="eg.net.lanNansahom.dao.impl.InjuredDaoImpl"  >
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="lookupDaoImpl" class="eg.net.lanNansahom.dao.impl.LookupDaoImpl"  >
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+</beans>

@@ -1,9 +1,9 @@
 package eg.net.lanNansahom.client.widget.victims;
 
+import java.util.Date;
 import java.util.List;
 
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
-import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
@@ -22,13 +22,15 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
+import eg.net.gxt.client.widget.FileUploadGrid;
+import eg.net.gxt.client.widget.FileUploadListener;
 import eg.net.lanNansahom.client.Resources;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 
-public class VictimImagesGrid extends LayoutContainer {
+public class VictimImagesGrid extends LayoutContainer implements FileUploadListener {
 
 	private final ListStore<ImageBean> store = new ListStore<ImageBean>();
 
@@ -54,7 +56,7 @@ public class VictimImagesGrid extends LayoutContainer {
 			@Override
 			protected ImageBean prepareData(ImageBean model) {
 				model.set("shortName", Format.ellipse(model.getDescription(), 15));
-				model.set("path", URLUtility.getImagesBaseURL() + model.getUrl());
+				model.set("path", "http://" + Window.Location.getHost() + "/images/" + model.getUrl());
 				return model;
 			}
 
@@ -87,7 +89,8 @@ public class VictimImagesGrid extends LayoutContainer {
 		addButton.addSelectionListener(new SelectionListener<ButtonEvent>() {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
-				showImageDetailsBox(new ImageBean());
+				FileUploadGrid fileUploadGrid = new FileUploadGrid(VictimImagesGrid.this);
+				fileUploadGrid.show();
 			}
 
 		});
@@ -100,7 +103,18 @@ public class VictimImagesGrid extends LayoutContainer {
 			@Override
 			public void componentSelected(ButtonEvent ce) {
 				if (selectedImage != null) {
-					showImageDetailsBox(selectedImage);
+					ImageDetailsMask imageDetailsMask = new ImageDetailsMask(selectedImage);
+					Dialog dialog = new Dialog();
+					dialog.setSize(300, 200);
+					dialog.setHideOnButtonClick(true);
+					dialog.setLayout(new BorderLayout());
+					// center
+					ContentPanel panel = new ContentPanel();
+					panel.setHeaderVisible(false);
+					panel.add(imageDetailsMask);
+					BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
+					dialog.add(panel, data);
+					dialog.show();
 				}
 			}
 
@@ -123,38 +137,20 @@ public class VictimImagesGrid extends LayoutContainer {
 	}
 
 	private native String getTemplate() /*-{
-		return [
-				'<tpl for=".">',
-				'<div class="thumb-wrap" id="{description}">',
-				'<div class="thumb"><img src="{path}" title="{description}"></div>',
-				'</div>', '</tpl>', '<div class="x-clear"></div>' ].join("");
+										return [ '<tpl for=".">', 
+										'<div class="thumb-wrap" id="{description}">',
+											'<div class="thumb"><img src="{path}" title="{description}"></div>',
+										'</div>', '</tpl>',
+										'<div class="x-clear"></div>' ].join("");
 
-	}-*/;
+										}-*/;
 
-	private void showImageDetailsBox(final ImageBean imageBean) {
-
-		ImageDetailsMask imageDetailsMask = new ImageDetailsMask(imageBean);
-		Dialog dialog = new Dialog();
-		dialog.setSize(300, 200);
-		dialog.setHideOnButtonClick(true);
-		dialog.setLayout(new BorderLayout());
-		// center
-		ContentPanel panel = new ContentPanel();
-		panel.setHeaderVisible(false);
-		panel.add(imageDetailsMask);
-		BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
-		dialog.add(panel, data);
-		dialog.addListener(Events.Hide, new Listener<BaseEvent>() {
-
-			public void handleEvent(BaseEvent be) {
-				if (store.indexOf(imageBean) == -1 && imageBean.getUrl() != null && !"".equals(imageBean.getUrl())) {
-					imageBean.setDescription(imageBean.getUrl());
-					store.add(imageBean);
-				}
-
-			}
-		});
-		dialog.show();
+	public void onSuccessUpload(String originalName, String finalName) {
+		ImageBean imageBean = new ImageBean();
+		imageBean.setUrl(finalName);
+		imageBean.setDescription(originalName);
+		imageBean.setDate(new Date());
+		this.store.add(imageBean);
 
 	}
 

@@ -15,8 +15,8 @@ import com.extjs.gxt.ui.client.widget.ListView;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FlowLayout;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Window;
 
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 
 public abstract class AbstractImagesPanel extends LayoutContainer {
@@ -92,14 +92,13 @@ public abstract class AbstractImagesPanel extends LayoutContainer {
 	}
 
 	protected native String getTemplate(String pBassClass) /*-{
-		return [
-				'<tpl for=".">',
-				'<div class="' + pBassClass + '-wrap" id="{jsid}" >',
-				'<div class="' + pBassClass
-						+ '"><img src="{path}" title="{description}"></div>',
-				'</div>', '</tpl>', '<div class="x-clear"></div>' ].join("");
+															return [ '<tpl for=".">', 
+															'<div class="'+pBassClass+'-wrap" id="{jsid}" >',
+															'<div class="'+pBassClass+'"><img src="{path}" title="{description}"></div>',
+															'</div>', '</tpl>',
+															'<div class="x-clear"></div>' ].join("");
 
-	}-*/;
+															}-*/;
 
 	protected String getBaseClass() {
 		return "thumb";
@@ -107,7 +106,7 @@ public abstract class AbstractImagesPanel extends LayoutContainer {
 
 	protected ImageBean prepareFinalData(ImageBean model, int index) {
 		if (model.get("path") == null) {
-			model.set("path", URLUtility.getImagesBaseURL() + model.getUrl());
+			model.set("path", "http://" + Window.Location.getHost() + "/images/" + model.getUrl());
 		}
 		model.set("jsid", "image_" + index);
 		model.set("description", model.getDescription());

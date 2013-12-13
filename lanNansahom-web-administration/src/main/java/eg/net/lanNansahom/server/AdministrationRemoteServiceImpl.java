@@ -1,13 +1,13 @@
 package eg.net.lanNansahom.server;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-
-import com.google.appengine.api.users.UserServiceFactory;
 
 import eg.net.EmailUtility;
 import eg.net.gxt.client.ClientException;
@@ -18,6 +18,7 @@ import eg.net.lanNansahom.services.VictimsAdministrationService;
 import eg.net.lanNansahom.services.beans.Announcement;
 import eg.net.lanNansahom.services.beans.Article;
 import eg.net.lanNansahom.services.beans.Image;
+import eg.net.lanNansahom.services.beans.ImageCategry;
 import eg.net.lanNansahom.services.beans.Lookup;
 import eg.net.lanNansahom.services.beans.Relative;
 import eg.net.lanNansahom.services.beans.Victim;
@@ -56,6 +57,10 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 6923147595272535272L;
 
+	private String baseDirectory;
+
+	private String imagesDirectory;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -64,6 +69,27 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		baseDirectory = config.getServletContext().getRealPath("/");
+		File servletDrectory = new File(config.getServletContext().getRealPath("/"));
+		try {
+			baseDirectory = servletDrectory.getParentFile().getCanonicalPath() + File.separator + "data";
+			imagesDirectory = servletDrectory.getParentFile().getCanonicalPath() + File.separator + "images";
+			File directory = new File(baseDirectory);
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+
+			for (ImageCategry categry : ImageCategry.values()) {
+				directory = new File(imagesDirectory + File.separator + categry.name().toString().toLowerCase() + "s");
+				if (!directory.exists()) {
+					directory.mkdir();
+				}
+			}
+
+		} catch (IOException e) {
+			throw new ServletException(e);
+		}
+
 	}
 
 	/*
@@ -174,6 +200,7 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 			victim.setImages(BeansMapper.map(victimBean.getImages(), Image.class));
 			victim.setVideos(BeansMapper.map(victimBean.getVideos(), Video.class));
 			victim.setArticles(BeansMapper.map(victimBean.getArticles(), Article.class));
+			moveVictimImages(victim);
 			request.setVictim(victim);
 			setVictimDates(victim, victimBean);
 			service.updateVictim(request);
@@ -182,6 +209,33 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 			throw translatException(exception.getCode(), exception.getMessage(), exception);
 		} catch (ParseException exception) {
 			throw translatException("", exception.getMessage(), exception);
+		}
+
+	}
+
+	private void moveVictimImages(Victim victim) {
+		for (ImageCategry categry : ImageCategry.values()) {
+			List<Image> images = victim.getImagesByType(categry);
+			int counter = 1;
+			for (Image image : images) {
+
+				String extension = image.getUrl().substring(image.getUrl().lastIndexOf("."));
+				String newURL = "";
+				if (images.size() > 1) {
+					newURL = image.getCategory().getName().toLowerCase() + "s/" + victim.getId() + "-" + counter
+							+ extension;
+					counter++;
+				} else {
+					newURL = image.getCategory().getName().toLowerCase() + "s/" + victim.getId() + extension;
+				}
+				if (!image.getUrl().equals(newURL)) {
+					File file = new File(imagesDirectory + File.separator + image.getUrl());
+					file.renameTo(new File(imagesDirectory + File.separator + newURL));
+					image.setUrl(newURL);
+
+				}
+			}
+
 		}
 
 	}
@@ -270,6 +324,54 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 		}
 	}
 
+	public void generateVictims(boolean isMartyr) throws ClientException {
+		try {
+			VictimsAdministrationService service = ServiceLocator.getInstance().getService(
+					VictimsAdministrationService.class);
+			SearchVictimsRequest request = new SearchVictimsRequest();
+			request.setPartnerId(1);
+			request.setMartyr(isMartyr);
+			request.setIsPublished(true);
+
+			SearchVictimsResponse response = service.searchVictims(request);
+			JSONDataWriter jsonDataWriter = new JSONDataWriter();
+			String filePath = isMartyr ? baseDirectory + File.separator + "martyrs.js" : baseDirectory + File.separator
+					+ "injuries.js";
+			String jsVar = isMartyr ? "martyrs" : "injuries";
+			jsonDataWriter.writeVictims(filePath, jsVar, response.getVictims());
+			if (isMartyr) {
+				SiteMapGenerator.generate(baseDirectory + File.separator + "sitmap.xml", response.getVictims());
+			}
+
+		} catch (ServiceException exception) {
+			throw translatException(exception.getCode(), exception.getMessage(), exception);
+		}
+	}
+
+	public void generatePublishAnnouncement() throws ClientException {
+		try {
+			MaterialsAdministrationService service = ServiceLocator.getInstance().getService(
+					MaterialsAdministrationService.class);
+
+			RetrieveAnnouncementsRequest request = new RetrieveAnnouncementsRequest();
+			request.setPartnerId(1);
+			request.setOnlyPublished(true);
+			List<Announcement> announcements = service.retrieveAnnouncements(request).getAnnouncements();
+
+			JSONDataWriter jsonDataWriter = new JSONDataWriter();
+			String filePath = baseDirectory + File.separator + "announcments.js";
+			String jsVar = "announcments";
+			jsonDataWriter.writeAnnouncements(filePath, jsVar, announcements);
+
+			filePath = baseDirectory + File.separator + "rss.xml";
+
+			RSSFeedsGenerator.generateRSS(filePath, announcements);
+
+		} catch (ServiceException exception) {
+			throw translatException(exception.getCode(), exception.getMessage(), exception);
+		}
+	}
+
 	public void addLookup(LookupType type, LookupBean lookupBean) throws ClientException {
 		try {
 			MaterialsAdministrationService service = ServiceLocator.getInstance().getService(
@@ -349,7 +451,7 @@ public class AdministrationRemoteServiceImpl extends BaseRemoteServiceServlet im
 	}
 
 	public void sendEmail(EmailBean pEmailBean) throws ClientException {
-		EmailUtility utility = new EmailUtility(UserServiceFactory.getUserService().getCurrentUser().getEmail(), null);
+		EmailUtility utility = new EmailUtility();
 		utility.sendEmail(pEmailBean.getTo(), pEmailBean.getSubject(), pEmailBean.getMessage());
 
 	}

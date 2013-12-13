@@ -28,7 +28,6 @@ import eg.net.lanNansahom.client.view.ApplicationView;
 import eg.net.lanNansahom.client.widget.common.ImageGalleryPanel;
 import eg.net.lanNansahom.client.widget.common.InnerPage;
 import eg.net.lanNansahom.client.widget.common.VideosGallery;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 import eg.net.lanNansahom.shared.beans.ImageCategry;
 import eg.net.lanNansahom.shared.beans.MartyrBean;
@@ -133,7 +132,7 @@ public class VictimProfile extends InnerPage {
 		List<ImageBean> profileImages = victimBean.getImagesByType(ImageCategry.Profile);
 		Image image = new Image();
 		if (profileImages.size() > 0) {
-			image.setUrl(URLUtility.getImagesBaseURL() + profileImages.get(0).getUrl());
+			image.setUrl("http://" + Window.Location.getHost() + "/images/" + profileImages.get(0).getUrl());
 		} else {
 			Resources resource = GWT.create(Resources.class);
 			image.setResource(resource.anonymousProfile());
@@ -146,7 +145,7 @@ public class VictimProfile extends InnerPage {
 			// Set Shortcut
 			Element element = DOM.getElementById("shortcutImage");
 			if (element != null) {
-				element.setAttribute("content", URLUtility.getImagesBaseURL() + thumbnailsImages.get(0).getUrl());
+				element.setAttribute("content", "http://lan-nansahom.org/images/" + thumbnailsImages.get(0).getUrl());
 			}
 		}
 		return container;

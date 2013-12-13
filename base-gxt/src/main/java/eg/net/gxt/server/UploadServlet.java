@@ -1,7 +1,12 @@
 package eg.net.gxt.server;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +16,38 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public abstract class UploadServlet extends HttpServlet {
+public class UploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1605169938935437112L;
 
 	private static final String ENCODING = "utf-8";
 
 	private static final long MAX_FILE_SIZE = 1024 * 1024;
+
+	private String baseDirectory;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
+	 */
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		baseDirectory = config.getServletContext().getRealPath("/");
+		File servletDrectory = new File(config.getServletContext().getRealPath("/"));
+		try {
+			baseDirectory = servletDrectory.getParentFile().getCanonicalPath() + File.separator + "images";
+			File directory = new File(baseDirectory);
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+
+		} catch (IOException e) {
+			throw new ServletException(e);
+		}
+
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -66,11 +96,38 @@ public abstract class UploadServlet extends HttpServlet {
 		}
 	}
 
+	private void storeFile(FileItemStream item, String fileName) throws IOException {
+		OutputStream outputStream = null;
+		InputStream inputStream = null;
+		int bytesRead;
+		try {
+			inputStream = item.openStream();
+			outputStream = new FileOutputStream(getFilePAth(fileName));
+			byte[] buffer = new byte[1024];
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
+			outputStream.flush();
+		} finally {
+			try {
+				if (inputStream != null)
+					inputStream.close();
+				if (outputStream != null)
+					outputStream.close();
+			} catch (IOException e1) {
+				// Do Nothing
+			}
+		}
+
+	}
+
+	private String getFilePAth(String name) {
+		return baseDirectory + File.separator + name;
+	}
+
 	private String getFileName(String name) {
 		String fileExtension = name.substring(name.indexOf("."));
 		String fileName = name.substring(0, name.indexOf("."));
 		return fileName + "_" + System.currentTimeMillis() + fileExtension;
 	}
-
-	protected abstract void storeFile(FileItemStream item, String fileName) throws IOException;
 }

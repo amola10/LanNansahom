@@ -45,6 +45,7 @@ public class MartyrController extends BaseController {
 		registerEventTypes(AppEvents.UPDATE_MARTYR);
 		registerEventTypes(AppEvents.DELETE_MARTYR);
 		registerEventTypes(AppEvents.SEARCH_MARTYRS);
+		registerEventTypes(AppEvents.GENERATE_MARTYRS);
 		registerEventTypes(AppEvents.SEND_EMAIL);
 	}
 
@@ -81,6 +82,9 @@ public class MartyrController extends BaseController {
 			break;
 		case AppEvents.DELETE_MARTYR_CODE:
 			model.deleteMartyr((MartyrBean) event.getData());
+			break;
+		case AppEvents.GENERATE_MARTYRS_CODE:
+			model.generatePublishedMartyrs();
 			break;
 		case AppEvents.SEND_EMAIL_CODE:
 			model.sendEmail((EmailBean) event.getData());

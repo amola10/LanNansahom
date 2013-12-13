@@ -32,6 +32,10 @@ public class MartyrModel extends VictimModel {
 		this.deleteVictim(martyrBean);
 	}
 
+	public void generatePublishedMartyrs() {
+		this.generateVictims(true);
+	}
+
 	@Override
 	protected EventType getSearchEvent() {
 		return AppEvents.SEARCH_MARTYRS;

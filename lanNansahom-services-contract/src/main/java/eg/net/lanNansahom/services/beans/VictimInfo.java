@@ -1,5 +1,6 @@
 package eg.net.lanNansahom.services.beans;
 
+
 import java.util.Date;
 
 public class VictimInfo {

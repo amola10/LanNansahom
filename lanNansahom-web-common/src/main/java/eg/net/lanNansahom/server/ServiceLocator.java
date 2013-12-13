@@ -18,7 +18,7 @@ public class ServiceLocator {
 	 * Instantiates a new service locator.
 	 */
 	private ServiceLocator() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "beans.xml" });
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "client_beans.xml" });
 		context.setValidating(false);
 		beanFactory = context.getBeanFactory();
 

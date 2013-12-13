@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+
+	<!-- JAXWS COnfiguration -->
+	<bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+
+	<jaxrs:server id="jsonService" address="/rest">
+		<jaxrs:serviceBeans>
+			<bean class="eg.net.lanNansahom.webservices.impl.BaseServicesImpl"></bean>
+			<bean class="eg.net.lanNansahom.webservices.impl.VictimsServiceImpl"></bean>
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="eg.net.lanNansahom.ServiceExceptionMapper"></bean>
+		</jaxrs:providers>
+		<!-- <jaxrs:inInterceptors>
+			<ref bean="logInbound" />
+		</jaxrs:inInterceptors>
+		<jaxrs:outInterceptors>
+			<ref bean="logOutbound" />
+		</jaxrs:outInterceptors> -->
+	</jaxrs:server>
+
+
+</beans>

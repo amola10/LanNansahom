@@ -1,20 +1,22 @@
 package eg.net.lanNansahom.server;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
+import java.io.OutputStreamWriter;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.abdera.Abdera;
 import org.apache.abdera.model.Entry;
 import org.apache.abdera.model.Feed;
+import org.apache.abdera.writer.WriterOptions;
 
 import eg.net.lanNansahom.services.beans.Announcement;
-import eg.net.services.ServiceException;
 
 public class RSSFeedsGenerator {
 
-	public static String generateRSS(List<Announcement> pAnnouncements) throws ServiceException {
+	public static void generateRSS(String pTargetPath, List<Announcement> pAnnouncements) {
 		Abdera abdera = new Abdera();
 		Feed feed = abdera.newFeed();
 
@@ -36,15 +38,34 @@ public class RSSFeedsGenerator {
 			entry.addLink("http://lan-nansahom.org/#martyrs");
 			i++;
 		}
+		sotreFeed(pTargetPath, feed);
 
-		StringWriter writer = new StringWriter();
+	}
+
+	/**
+	 * Sotre file.
+	 * 
+	 * @param pTargetPath
+	 *            the target path
+	 * @param fileContent
+	 *            the file content
+	 */
+	private static void sotreFeed(String pTargetPath, Feed pFeed) {
+		BufferedWriter bufferedWriter = null;
 		try {
-			feed.writeTo(writer);
-			return writer.getBuffer().toString();
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pTargetPath), "UTF8"));
+			WriterOptions writerOptions = pFeed.getDefaultWriterOptions();
+			writerOptions.setCharset("UTF8");
+			pFeed.writeTo(bufferedWriter, writerOptions);
+			bufferedWriter.flush();
+		} catch (Exception e) {
+			if (bufferedWriter != null) {
+				try {
+					bufferedWriter.close();
+				} catch (IOException e1) {
+				}
+			}
 
-		} catch (IOException e) {
-			throw new ServiceException(e);
 		}
-
 	}
 }

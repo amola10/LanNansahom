@@ -44,7 +44,6 @@ import eg.net.lanNansahom.client.Messages;
 import eg.net.lanNansahom.client.Resources;
 import eg.net.lanNansahom.client.VictimNavigation;
 import eg.net.lanNansahom.client.view.ApplicationView;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 import eg.net.lanNansahom.shared.beans.ImageCategry;
 import eg.net.lanNansahom.shared.beans.MartyrBean;
@@ -174,7 +173,7 @@ public class VictimsLightBox extends ContentPanel {
 		List<ImageBean> profileImages = victimBean.getImagesByType(ImageCategry.Profile);
 		Image image = new Image();
 		if (profileImages.size() > 0) {
-			image.setUrl(URLUtility.getImagesBaseURL() + profileImages.get(0).getUrl());
+			image.setUrl("http://" + Window.Location.getHost() + "/images/" + profileImages.get(0).getUrl());
 		} else {
 			Resources resource = GWT.create(Resources.class);
 			image.setResource(resource.anonymousProfile());

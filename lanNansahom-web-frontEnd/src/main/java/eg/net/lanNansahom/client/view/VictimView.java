@@ -5,6 +5,7 @@ import java.util.List;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.reveregroup.gwt.imagepreloader.ImageLoadEvent;
@@ -17,7 +18,6 @@ import eg.net.gxt.client.view.BaseView;
 import eg.net.lanNansahom.client.AppEvents;
 import eg.net.lanNansahom.client.widget.victims.VictimProfile;
 import eg.net.lanNansahom.client.widget.victims.VictimsLightBox;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 import eg.net.lanNansahom.shared.beans.ImageCategry;
 import eg.net.lanNansahom.shared.beans.VictimBean;
@@ -71,7 +71,7 @@ public class VictimView extends BaseView {
 	private void downloadProfilePicture(VictimBean victimBean, final DownloadListener listener) {
 		List<ImageBean> profileImages = victimBean.getImagesByType(ImageCategry.Profile);
 		if (profileImages.size() > 0) {
-			final String url = URLUtility.getImagesBaseURL() + profileImages.get(0).getUrl();
+			final String url = "http://" + Window.Location.getHost() + "/images/" + profileImages.get(0).getUrl();
 			ImagePreloader.load(url, new ImageLoadHandler() {
 				public void imageLoaded(ImageLoadEvent pEvent) {
 					Image.prefetch(url);

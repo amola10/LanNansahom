@@ -74,6 +74,15 @@ public abstract class VictimModel extends BaseBean {
 		});
 	}
 
+	public void generateVictims(boolean isMartyrs) {
+		service.generateVictims(isMartyrs, new BaseAsyncCallbackHandler<Void>() {
+			public void onSuccess(Void a) {
+				Window.alert("Generate Successfully");
+			}
+
+		});
+	}
+
 	public void sendEmail(EmailBean pEmailBean) {
 		service.sendEmail(pEmailBean, new BaseAsyncCallbackHandler<Void>() {
 			public void onSuccess(Void a) {

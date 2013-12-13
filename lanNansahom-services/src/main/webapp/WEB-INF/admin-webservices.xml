@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	
+    <!-- JAXWS COnfiguration -->
+	
+	<bean id="wss4jIn" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+	    <constructor-arg>
+	      <map>
+	           <entry key="action" value="Timestamp UsernameToken"/>
+               <entry key="user" value="lannansahomGWTClient" />
+               <entry key="passwordType" value="PasswordDigest"/>
+               <entry key="passwordCallbackClass" value="eg.net.lanNansahom.webservices.ServerPasswordCallback" />
+	      </map>
+	    </constructor-arg>
+  	</bean>
+  	<bean id="wss4jOut" class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+	    <constructor-arg>
+	      <map>
+		        <entry key="action" value="Timestamp UsernameToken" />
+		         <entry key="user" value="lannansahomGWTClient" />
+		         <entry key="passwordCallbackClass" value="eg.net.lanNansahom.webservices.ServerPasswordCallback" />
+	       </map>
+	    </constructor-arg>
+  	</bean>
+	
+	 <bean id="aegisBean" class="org.apache.cxf.aegis.databinding.AegisDatabinding" scope="prototype"/>
+
+	 <bean id="jaxws-and-aegis-service-factory" class="org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean" scope="prototype">
+	        <property name="dataBinding" ref="aegisBean"/>
+	        <property name="serviceConfigurations">
+	            <list>
+	              <bean class="org.apache.cxf.jaxws.support.JaxWsServiceConfiguration"/>
+	              <bean class="org.apache.cxf.aegis.databinding.AegisServiceConfiguration"/>
+	              <bean class="org.apache.cxf.service.factory.DefaultServiceConfiguration"/>
+	            </list>
+	        </property>
+	 </bean>
+	
+	<!-- Lookup Service -->
+	<jaxws:endpoint id="baseServicesImpl"  address="/base">
+		<jaxws:implementor>
+			<bean class="eg.net.lanNansahom.webservices.impl.BaseServicesImpl" />
+		</jaxws:implementor>
+		<jaxws:schemaLocations xmlns="default namespace"></jaxws:schemaLocations>
+		<jaxws:serviceFactory>
+		   <ref bean="jaxws-and-aegis-service-factory" />
+  		</jaxws:serviceFactory>
+		<jaxws:inInterceptors>
+			<ref bean="wss4jIn" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="wss4jOut" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	<!-- Announcement & Articles & site Service -->
+	<jaxws:endpoint id="materialsAdministrationService"  address="/materials">
+		<jaxws:implementor>
+			<bean class="eg.net.lanNansahom.webservices.impl.MaterialsAdministrationServiceImpl" />
+		</jaxws:implementor>
+		<jaxws:schemaLocations xmlns="default namespace"></jaxws:schemaLocations>
+		<jaxws:serviceFactory>
+		   <ref bean="jaxws-and-aegis-service-factory" />
+  		</jaxws:serviceFactory>
+		<jaxws:inInterceptors>
+			<ref bean="wss4jIn" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="wss4jOut" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	
+	<!-- Manage Victim Service -->
+	<jaxws:endpoint id="VictimsAdministrationServiceImpl"  address="/victimsAdministration">
+		<jaxws:implementor>
+			<bean class="eg.net.lanNansahom.webservices.impl.VictimsAdministrationServiceImpl" />
+		</jaxws:implementor>
+		<jaxws:schemaLocations xmlns="default namespace"></jaxws:schemaLocations>
+		<jaxws:serviceFactory>
+		   <ref bean="jaxws-and-aegis-service-factory" />
+  		</jaxws:serviceFactory>
+		<jaxws:inInterceptors>
+			<ref bean="wss4jIn" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="wss4jOut" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+
+
+</beans>

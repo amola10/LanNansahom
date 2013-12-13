@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<jaxrs:client id="BaseServicesClient"
+		address="http://localhost:8080/lanNansahom-services/services/rest"
+		serviceClass="eg.net.lanNansahom.services.BaseServices"
+		inheritHeaders="true">
+		<jaxrs:headers>
+			<entry key="Accept" value="application/json" />
+		</jaxrs:headers>
+		<jaxrs:providers>
+			<bean class="eg.net.lanNansahom.server.ResponseServiceExceptionMapper"></bean>
+		</jaxrs:providers>
+	</jaxrs:client>
+	<jaxrs:client id="VictimsServiceClient"
+		address="http://localhost:8080/lanNansahom-services/services/rest"
+		serviceClass="eg.net.lanNansahom.services.VictimsService"
+		inheritHeaders="true">
+		<jaxrs:headers>
+			<entry key="Accept" value="application/json" />
+		</jaxrs:headers>
+		<jaxrs:providers>
+			<bean class="eg.net.lanNansahom.server.ResponseServiceExceptionMapper"></bean>
+		</jaxrs:providers>
+	</jaxrs:client>
+
+</beans>

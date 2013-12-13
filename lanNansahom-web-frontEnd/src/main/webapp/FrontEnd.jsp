@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" import="eg.net.lanNansahom.server.GoogleLoginService"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"  xmlns:fb="http://www.facebook.com/2008/fbml" style="background-color: black;" >
 <head>
@@ -16,7 +16,11 @@
 
 <script type="text/javascript" src="FrontEnd/FrontEnd.nocache.js"   ></script>
 <script type="text/javascript" src="gxt/flash/swfobject.js"></script>
-<script type="text/javascript" src="http://commondatastorage.googleapis.com/lannansahom/data/json.js"  ></script>
+<script type="text/javascript" src="./../data/martyrs.js"></script>
+<script type="text/javascript" src="./../data/injuries.js"></script>
+<script type="text/javascript" src="./../data/announcments.js"></script>
+<script type="text/javascript" src="./../data/images.js"></script>
+<script type="text/javascript" src="./../data/videos.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="gxt/css/gxt-all-rtl.css">

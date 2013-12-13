@@ -1,9 +1,10 @@
 package eg.net.lanNansahom.server;
 
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import eg.net.lanNansahom.shared.URLUtility;
-
 public class RSSFeedsServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2550547602318238933L;
+
+	private String baseDirectory;
 
 	/*
 	 * (non-Javadoc)
@@ -28,6 +29,19 @@ public class RSSFeedsServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		baseDirectory = config.getServletContext().getRealPath("/");
+		File servletDrectory = new File(config.getServletContext().getRealPath("/"));
+		try {
+			baseDirectory = servletDrectory.getParentFile().getCanonicalPath() + File.separator + "data";
+			File directory = new File(baseDirectory);
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+
+		} catch (IOException e) {
+			throw new ServletException(e);
+		}
+
 	}
 
 	/*
@@ -42,11 +56,10 @@ public class RSSFeedsServlet extends HttpServlet {
 		readRss(resp);
 	}
 
-	public void readRss(HttpServletResponse resp) throws IOException {
+	public void readRss(HttpServletResponse resp) {
 		DataInputStream inputStream = null;
 		try {
-			URL url = new URL(URLUtility.getJsonDataBaseURL() + "rss.xml");
-			inputStream = new DataInputStream(url.openStream());
+			inputStream = new DataInputStream(new FileInputStream(baseDirectory + "/rss.xml"));
 			byte data[] = new byte[inputStream.available()];
 			inputStream.readFully(data);
 			resp.getOutputStream().write(data);

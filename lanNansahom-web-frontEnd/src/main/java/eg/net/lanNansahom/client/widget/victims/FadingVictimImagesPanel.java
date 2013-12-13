@@ -13,6 +13,7 @@ import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.reveregroup.gwt.imagepreloader.ImageLoadEvent;
 import com.reveregroup.gwt.imagepreloader.ImageLoadHandler;
 import com.reveregroup.gwt.imagepreloader.ImagePreloader;
@@ -21,7 +22,6 @@ import eg.net.gxt.client.ClientExceptionHandler;
 import eg.net.lanNansahom.client.AppEvents;
 import eg.net.lanNansahom.client.CustomGXTUtil;
 import eg.net.lanNansahom.client.JSONDataReader;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.ImageBean;
 
 public class FadingVictimImagesPanel extends VictimImagesPanel {
@@ -56,7 +56,7 @@ public class FadingVictimImagesPanel extends VictimImagesPanel {
 		CustomGXTUtil.showLoading();
 		for (int i = 0; i < store.getCount(); i++) {
 			final ImageBean bean = store.getAt(i);
-			ImagePreloader.load(URLUtility.getImagesBaseURL() + bean.getUrl(), new ImageLoadHandler() {
+			ImagePreloader.load("http://" + Window.Location.getHost() + "/images/" + bean.getUrl(), new ImageLoadHandler() {
 				public void imageLoaded(ImageLoadEvent event) {
 					downloadedImages.add("done");
 					if (downloadedImages.size() == NUMBER_OF_IMAGES) {

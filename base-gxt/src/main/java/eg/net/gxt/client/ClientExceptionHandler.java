@@ -1,6 +1,6 @@
 package eg.net.gxt.client;
 
-import com.allen_sauer.gwt.log.client.Log;
+import com.google.gwt.user.client.Window;
 
 /**
  * The Class ClientExceptionHandler.
@@ -15,9 +15,9 @@ public class ClientExceptionHandler {
 	 */
 	public void handlerException(Throwable throwable) {
 		throwable.printStackTrace();
-		Log.error(
-				"An exception of type " + throwable.getClass().getName() + " was raised with message"
-						+ throwable.getMessage(), throwable);
+
+		Window.alert("An exception of type " + throwable.getClass().getName() + " was raised with message"
+				+ throwable.getMessage());
 
 	}
 

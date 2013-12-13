@@ -1,5 +1,9 @@
 package eg.net.lanNansahom.services;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import eg.net.lanNansahom.services.requests.AddAnnouncementRequest;
 import eg.net.lanNansahom.services.requests.AddLookupRequest;
 import eg.net.lanNansahom.services.requests.RetrieveAnnouncementsRequest;
@@ -14,18 +18,31 @@ import eg.net.lanNansahom.services.responses.UpdateAnnouncementResponse;
 import eg.net.lanNansahom.services.responses.UpdateLookupResponse;
 import eg.net.services.ServiceException;
 
+@WebService(targetNamespace = "http://lanNansahom.net.eg")
 public interface MaterialsAdministrationService {
 
-	public AddLookupResponse addLookup(AddLookupRequest request) throws ServiceException;
-
-	public UpdateLookupResponse updateLookup(UpdateLookupRequest request) throws ServiceException;
-
-	public SearchLookupsResponse searchLookups(SearchLookupsRequest request) throws ServiceException;
-
-	public AddAnnouncementResponse addAnnouncement(AddAnnouncementRequest request) throws ServiceException;
-
-	public RetrieveAnnouncementsResponse retrieveAnnouncements(RetrieveAnnouncementsRequest request)
+	@WebMethod
+	public AddLookupResponse addLookup(@WebParam(name = "AddLookupRequest") AddLookupRequest request)
 			throws ServiceException;
 
-	public UpdateAnnouncementResponse updateAnnouncement(UpdateAnnouncementRequest request) throws ServiceException;
+	@WebMethod
+	public UpdateLookupResponse updateLookup(@WebParam(name = "UpdateLookupRequest") UpdateLookupRequest request)
+			throws ServiceException;
+
+	@WebMethod
+	public SearchLookupsResponse searchLookups(@WebParam(name = "SearchLookupsRequest") SearchLookupsRequest request)
+			throws ServiceException;
+
+	@WebMethod
+	public AddAnnouncementResponse addAnnouncement(
+			@WebParam(name = "AddAnnouncementRequest") AddAnnouncementRequest request) throws ServiceException;
+
+	@WebMethod
+	public RetrieveAnnouncementsResponse retrieveAnnouncements(
+			@WebParam(name = "RetrieveAnnouncementsRequest") RetrieveAnnouncementsRequest request)
+			throws ServiceException;
+
+	@WebMethod
+	public UpdateAnnouncementResponse updateAnnouncement(
+			@WebParam(name = "UpdateAnnouncementRequest") UpdateAnnouncementRequest request) throws ServiceException;
 }

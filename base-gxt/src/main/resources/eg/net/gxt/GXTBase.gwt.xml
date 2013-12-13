@@ -10,8 +10,6 @@
 	<!-- <inherits name="org.spacetimeresearch.gwt.addthis.AddThisWidget"/> -->
 
 
-  	<inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
-  	<extend-property name="log_level" values="DEBUG,WARN"/>
 
 
 </module>

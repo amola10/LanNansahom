@@ -19,6 +19,7 @@ import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 
 import eg.net.gxt.client.widget.PagingDataGrid;
@@ -27,7 +28,6 @@ import eg.net.lanNansahom.client.Messages;
 import eg.net.lanNansahom.client.Resources;
 import eg.net.lanNansahom.client.VictimNavigation;
 import eg.net.lanNansahom.client.view.ApplicationView;
-import eg.net.lanNansahom.shared.URLUtility;
 import eg.net.lanNansahom.shared.beans.VictimInfoBean;
 
 public class SearchResultPanel extends PagingDataGrid<VictimInfoBean> implements GridCellRenderer<ModelData> {
@@ -84,7 +84,7 @@ public class SearchResultPanel extends PagingDataGrid<VictimInfoBean> implements
 		if (VictimInfoBean.BINDING_IMAGE.equals(property)) {
 			Image image = new Image();
 			if (victim.getProfileThumbnail() != null) {
-				image.setUrl(URLUtility.getImagesBaseURL() + victim.getProfileThumbnail().getUrl());
+				image.setUrl("http://" + Window.Location.getHost() + "/images/" + victim.getProfileThumbnail().getUrl());
 
 			} else {
 				Resources resource = GWT.create(Resources.class);

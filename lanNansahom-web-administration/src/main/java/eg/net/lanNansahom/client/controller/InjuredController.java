@@ -44,6 +44,7 @@ public class InjuredController extends BaseController {
 		registerEventTypes(AppEvents.UPDATE_INJURED);
 		registerEventTypes(AppEvents.DELETE_INJURED);
 		registerEventTypes(AppEvents.SEARCH_INJURIES);
+		registerEventTypes(AppEvents.GENERATE_INJURED);
 	}
 
 	/*
@@ -79,6 +80,9 @@ public class InjuredController extends BaseController {
 			break;
 		case AppEvents.DELETE_INJURED_CODE:
 			model.deleteInjured((InjuredBean) event.getData());
+			break;
+		case AppEvents.GENERATE_INJURED_CODE:
+			model.generatePublishedInjuries();
 			break;
 		default:
 			break;

@@ -31,6 +31,9 @@ public interface AppEvents {
 	public static final int GO_TO_UPDATE_INJURED_CODE = 22;
 	public static final int UPDATE_INJURED_CODE = 23;
 	public static final int DELETE_INJURED_CODE = 24;
+	public static final int GENERATE_INJURED_CODE = 25;
+	public static final int GENERATE_MARTYRS_CODE = 26;
+	public static final int GENERATE_ANNOUNCEMENT_CODE = 27;
 
 	public static final int GO_TO_ADD_LOOKUP_CODE = 28;
 	public static final int ADD_LOOKUP_CODE = 29;
@@ -70,6 +73,10 @@ public interface AppEvents {
 	public static final EventType GO_TO_UPDATE_INJURED = new EventType(GO_TO_UPDATE_INJURED_CODE, "updateInjured");
 	public static final EventType UPDATE_INJURED = new EventType(UPDATE_INJURED_CODE);
 	public static final EventType DELETE_INJURED = new EventType(DELETE_INJURED_CODE);
+
+	public static final EventType GENERATE_INJURED = new EventType(GENERATE_INJURED_CODE);
+	public static final EventType GENERATE_MARTYRS = new EventType(GENERATE_MARTYRS_CODE);
+	public static final EventType GENERATE_ANNOUNCEMENT = new EventType(GENERATE_ANNOUNCEMENT_CODE);
 
 	public static final EventType GO_TO_ADD_LOOKUP = new EventType(GO_TO_ADD_LOOKUP_CODE, "addLookup");
 	public static final EventType ADD_LOOKUP = new EventType(ADD_LOOKUP_CODE);

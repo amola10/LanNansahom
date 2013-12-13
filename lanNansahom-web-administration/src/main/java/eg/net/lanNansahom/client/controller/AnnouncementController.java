@@ -42,6 +42,7 @@ public class AnnouncementController extends BaseController {
 		registerEventTypes(AppEvents.ADD_ANNOUNCEMENT);
 		registerEventTypes(AppEvents.UPDATE_ANNOUNCEMENT);
 		registerEventTypes(AppEvents.LIST_ANNOUNCEMENTS);
+		registerEventTypes(AppEvents.GENERATE_ANNOUNCEMENT);
 
 	}
 
@@ -76,6 +77,9 @@ public class AnnouncementController extends BaseController {
 			break;
 		case AppEvents.LIST_ANNOUNCEMENTS_CODE:
 			model.getAllAnnouncement();
+			break;
+		case AppEvents.GENERATE_ANNOUNCEMENT_CODE:
+			model.generatePublishAnnouncement();
 			break;
 		default:
 			break;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 
 import eg.net.gxt.client.BaseAsyncCallbackHandler;
 import eg.net.gxt.client.GXTUtil;
@@ -69,6 +70,14 @@ public class AnnouncementModel {
 			public void onSuccess(List<AnnouncementBean> result) {
 				GXTUtil.hideLoadingMessage();
 				Dispatcher.forwardEvent(AppEvents.REFRESH_ANNOUNCEMENTS, result);
+			}
+		});
+	}
+
+	public void generatePublishAnnouncement() {
+		service.generatePublishAnnouncement(new BaseAsyncCallbackHandler<Void>() {
+			public void onSuccess(Void result) {
+				Window.alert("Data Generated Successfuly");
 			}
 		});
 	}

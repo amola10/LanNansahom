@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id="retrieveAllLookupService" class="eg.net.lanNansahom.services.RetrieveAllLookupService" scope="singleton" />
+
+	<bean id="addAnnouncementService" class="eg.net.lanNansahom.services.AddAnnouncementService" scope="singleton" />
+	<bean id="updateAnnouncementService" class="eg.net.lanNansahom.services.UpdateAnnouncementService" scope="singleton"/>
+	<bean id="retrieveAnnouncementsService" class="eg.net.lanNansahom.services.RetrieveAnnouncementsService" scope="singleton" />
+	
+	<bean id="addVictimService" class="eg.net.lanNansahom.services.AddVictimService" scope="singleton" />
+	<bean id="updateVictimService" class="eg.net.lanNansahom.services.UpdateVictimService" scope="singleton" />
+	<bean id="deleteVictimsService" class="eg.net.lanNansahom.services.DeleteVictimsService" scope="singleton" />
+	<bean id="searchVictimsService" class="eg.net.lanNansahom.services.SearchVictimsService" scope="singleton"/>
+	
+	<bean id="retrieveAllMartyrsService" class="eg.net.lanNansahom.services.RetrieveAllMartyrsService" scope="singleton" />
+	<bean id="retrieveAllInjuriesService" class="eg.net.lanNansahom.services.RetrieveAllInjuriesService" scope="singleton" />
+	<bean id="searchPublishedVictimsService" class="eg.net.lanNansahom.services.SearchPublishedVictimsService" scope="singleton"/>
+	<bean id="retrieveVictimService" class="eg.net.lanNansahom.services.RetrieveVictimService" scope="singleton"/>
+	
+	<bean id="addLookupService" class="eg.net.lanNansahom.services.AddLookupService" scope="singleton" />
+	<bean id="updateLookupService" class="eg.net.lanNansahom.services.UpdateLookupService" scope="singleton"/>
+	<bean id="searchLookupsService" class="eg.net.lanNansahom.services.SearchLookupsService" scope="singleton" />
+	
+	
+</beans>

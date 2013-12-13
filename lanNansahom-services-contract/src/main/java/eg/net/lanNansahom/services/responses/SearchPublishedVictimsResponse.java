@@ -2,9 +2,12 @@ package eg.net.lanNansahom.services.responses;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import eg.net.lanNansahom.services.beans.VictimInfo;
 import eg.net.services.ServiceResponse;
 
+@XmlRootElement(name = "SearchPublishedVictimsResponse")
 public class SearchPublishedVictimsResponse extends ServiceResponse {
 
 	List<VictimInfo> victims;
