@@ -524,14 +524,14 @@ html,body{
 }
 
 .rightHeader,.middleHeader {
-	background-image: url("/images/background.png");
+	background-image: url("/lanNansahom-web-frontEnd/images/background.png");
 	background-repeat: repeat-x;
 	top: 16px;
 	position: relative;
 }
 
 .leftHeader {
-	background-image: url("/images/left-header-background.png");
+	background-image: url("/lanNansahom-web-frontEnd/images/left-header-background.png");
 	background-repeat: repeat-x;
 }
 
@@ -559,7 +559,7 @@ html,body{
 }
 
 .headerBackground,.logoHeader {
-	background-image: url("/images/header_bg.jpg") !important;
+	background-image: url("/lanNansahom-web-frontEnd/images/header_bg.jpg") !important;
 	background-repeat: repeat-x;
 }
 
@@ -582,9 +582,9 @@ html,body{
 }
 
 .footer {
-	background-image: url("/images/mergedImages.png");
-	background-position: 0 -118px; width: 940px; height: 31px;
+	background-image: url("/lanNansahom-web-frontEnd/images/footer.png");
 	background-repeat: no-repeat;
+	background-position: top left;
 }
 
 .gwt-Anchor {
@@ -655,7 +655,7 @@ html,body{
 }
 
 .thumbGallery {
-	background-image: url("/images/graybackground.png");
+	background-image: url("/lanNansahom-web-frontEnd/images/graybackground.png");
 	background-repeat: repeat-x repeat-y;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -676,7 +676,7 @@ html,body{
 }
 
 .thumbVideo {
-	background-image: url("/images/graybackground.png");
+	background-image: url("/lanNansahom-web-frontEnd/images/graybackground.png");
 	background-repeat: repeat-x repeat-y;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -727,7 +727,7 @@ html,body{
 }
 
 .grayPanel {
-	background-image: url("/images/graybackground.png");
+	background-image: url("/lanNansahom-web-frontEnd/images/graybackground.png");
 	background-repeat: repeat-x repeat-y;
 }
 
@@ -777,7 +777,7 @@ html,body{
 
 .victimNameLink {
 	padding: 5px 15px 5px 0px;
-	background: url("/images/bullet.png") no-repeat right center ;
+	background: url("/lanNansahom-web-frontEnd/images/bullet.png") no-repeat right center ;
 }
 
 .victimNameLink a:hover {
@@ -788,13 +788,12 @@ html,body{
 	padding-right: 20px;
 	padding-bottom: 10px;
 	padding-top: 10px;
-	background: url("/images/bullet.png") no-repeat right center ;
+	background: url("/lanNansahom-web-frontEnd/images/bullet.png") no-repeat right center ;
 }
 
 .tooltip {
 	display:none;
-	background:transparent url(/images/mergedImages.png);
-	background-position: 0 0; width: 167px; height: 98px;
+	background:transparent url(/lanNansahom-web-frontEnd/images/black_arrow.png);
 	font-size:10px;
 	height:70px;
 	width:138px;
@@ -836,7 +835,7 @@ html,body{
 
 
 .navigationPanel{
-	background-image: url("/images/mergedImages.png");
-	background-position: 0 -154px; width: 701px; height: 27px;
+	background-image: url("/lanNansahom-web-frontEnd/images/navigation-background.png");
 	background-repeat: no-repeat;
+	background-position: top left;
 }
